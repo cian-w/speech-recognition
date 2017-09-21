@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Speech Recognition</title>
+  </head>
+
+  <body>
+    <center>
+        <br><br><br><br><br><br><br><br><br>
+      <h1>Click the Speak button for me to listen!</h1>
+      <br>
+      <button onclick='speechRecogniser();'>Speak!</button>
+      <br><br><br>
+      <h2>Result will be here.</h2>
+    </center>
+  </body>
+
+  <script>
+  //var siteName = '';
+  // When the page is loaded set up the speech recognition object.
+  // When we get a result pass it to goTo();
+  function speechRecogniser() {
+      var recognition = new webkitSpeechRecognition();
+      recognition.onresult = function(event) {
+        var siteName = event.results[0][0].transcript;
+        goTo(siteName);
+      }
+      recognition.start();
+  }
+
+  // Open the site in new tab
+  function goTo(siteName){
+    console.log(siteName);
+    window.open('http://www.' + siteName, '_blank');
+  }
+  </script>
+</html>
